@@ -181,6 +181,10 @@
     <Compile Include="Migrations\201705222345527_AddGigNGenre.Designer.cs">
       <DependentUpon>201705222345527_AddGigNGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705222358493_AddRequiredGigNGenre.cs" />
+    <Compile Include="Migrations\201705222358493_AddRequiredGigNGenre.Designer.cs">
+      <DependentUpon>201705222358493_AddRequiredGigNGenre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -263,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705222345527_AddGigNGenre.resx">
       <DependentUpon>201705222345527_AddGigNGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705222358493_AddRequiredGigNGenre.resx">
+      <DependentUpon>201705222358493_AddRequiredGigNGenre.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
