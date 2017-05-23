@@ -194,6 +194,10 @@
     <Compile Include="Migrations\201705231517114_AddFKArtistNGenre.Designer.cs">
       <DependentUpon>201705231517114_AddFKArtistNGenre.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705232326195_AddNametoApplicationUser.cs" />
+    <Compile Include="Migrations\201705232326195_AddNametoApplicationUser.Designer.cs">
+      <DependentUpon>201705232326195_AddNametoApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -288,6 +292,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705231517114_AddFKArtistNGenre.resx">
       <DependentUpon>201705231517114_AddFKArtistNGenre.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705232326195_AddNametoApplicationUser.resx">
+      <DependentUpon>201705232326195_AddNametoApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
