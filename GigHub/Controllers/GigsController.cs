@@ -42,12 +42,19 @@ namespace GigHub.Controllers
             //var artist = _context.Users.Single(u => u.Id == artistId);         //existe mesmo esse usuario?
             //var genre = _context.Genres.Single(g => g.Id == viewModel.Genre);  //existe mesmo esse genero?
 
+            //Validação
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = _context.Genres.ToList(); //para formulario não submeter vazio
+                return View("Create", viewModel);
+            }
+
 
             var gig = new Gig
             {
                 //resgata usuario.id logado
                 ArtistId = User.Identity.GetUserId(),
-                DateTime = viewModel.DateTime,
+                DateTime = viewModel.GetDateTime(),
                 GenreId = viewModel.Genre,
                 Venue = viewModel.Venue
             };
