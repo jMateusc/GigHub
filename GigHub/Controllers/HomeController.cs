@@ -17,8 +17,10 @@ namespace GigHub.Controllers
         public ActionResult Index()
         {
             //extrai o Artista(tabela) relacionado a Gig(tabela) que irá participar.
+            //Evitando assim NullReferenceException
             var upcomingGigs = _context.Gigs
                                        .Include(g => g.Artist)
+                                       .Include(g => g.Genre)
                                        .Where(g => g.DateTime > DateTime.Now);
             return View(upcomingGigs);
         }
