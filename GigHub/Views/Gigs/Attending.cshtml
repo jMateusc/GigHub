@@ -1,20 +1,18 @@
 ﻿@model GigHub.ViewModels.GigsViewModel
+
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Attending";
 }
 
-<div class="jumbotron">
-    <h1>The Gighub website</h1>
-    <p class="alert alert-success">Acompanhe os eventos da sua cidade</p>
-</div>
+<h2>Attending</h2>
 
 <div class="container">
     <div class="row">       
         <ul class="gigs">
             @foreach (var gig in Model.UpcomingGigs)
             {
-             <div class="col-md-4 gigs">                   
-                  <li>
+                <div class="col-md-4 gigs">                   
+                    <li>
                         @*Exibe Calendario*@
                         <div class="date">
                             <div class="month">
@@ -41,42 +39,9 @@
                                 }
                             </span>
                         </div>
-                  </li>
-             </div>
+                    </li>
+                </div>
             }
         </ul>
-     </div>
+    </div>
 </div>
-
-@section scripts
-{
-    <script>
-        @*Acao/Botao Going *@
-        $(document).ready(function() {
-            $(".js-toggle-attendance").click(function(e) {
-                var button = $(e.target);
-                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
-                    .done(function() {
-                        button.removeClass("btn-default").addClass("btn-info").text("Going");
-                    })
-                    .fail(function() {
-                        alert("Something failed!");
-                    });
-            });
-        });
-
-        @*Acao/Botao Follow *@
-        $(document).ready(function () {
-            $(".js-toggle-follow").click(function(e) {
-                var button = $(e.target);
-                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
-                    .done(function() {
-                        button.text("Following");
-                    })
-                    .fail(function() {
-                        alert("Something failed!");
-                    });
-            });
-        });
-    </script>
-}

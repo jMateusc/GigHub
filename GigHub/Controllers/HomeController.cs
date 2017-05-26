@@ -25,7 +25,7 @@ namespace GigHub.Controllers
                                        .Where(g => g.DateTime > DateTime.Now);
 
             //HomeViewModel para checar se Usuario está Logado ou Não (caso nao esteja, não exibe botões Follow e Going)
-            var viewModel = new HomeViewModel
+            var viewModel = new GigsViewModel
             {
                 UpcomingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated
