@@ -9,35 +9,42 @@
 </div>
 
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <ul class="gigs">
-                @foreach (var gig in Model)
-                {
-                    @**<li>@gig.DateTime - @gig.Artist.Name</li>*@
+    <div class="row">       
+         <ul class="gigs">
+             @foreach (var gig in Model)
+             {
+               <div class="col-md-4 gigs">
+                        @*<li>@gig.DateTime - @gig.Artist.Name - @gig.Venue</li>*@
                     <li>
-                        <div class="date">
-                            <div class="month">
-                                @gig.DateTime.ToString("MMM")
-                            </div>
-                            <div class="day">
-                                @gig.DateTime.ToString("d ")
-                            </div>
-                        </div>
-                        <div class="details">
-                            <span class="artist">
-                                @gig.Artist.Name
-                            </span>
-                            <span class="genre">
-                                @gig.Genre.Name
-                            </span>
-                            <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going?</button>
-                        </div>
+                    @*Calendario*@
+                    <div class="date">
+                         <div class="month">
+                              @gig.DateTime.ToString("MMM")
+                         </div>
+                         <div class="day">
+                              @gig.DateTime.ToString("d ")
+                         </div>
+                    </div>
+                    @*Detalhe do Evento e Artista*@
+                    <div class="details">
+                         <span class="artist">
+                               @gig.Artist.Name <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
+                         </span>
+                        <span class="genre">
+                            @gig.Genre.Name <button data-gig-id="@gig.Id" class="btn btn-default btn-sm js-toggle-attendance pull-right">Going?</button>
+                        </span>
+
+                    </div>
+                    @*Botões de Ação*@
+                    @*<div class="gf">
+                         
+                         
+                    </div>*@
                     </li>
-                }
-            </ul>
-        </div>                                                      
-    </div>
+              </div>
+             }
+          </ul>
+     </div>
 </div>
 
 @section scripts

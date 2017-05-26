@@ -80,6 +80,7 @@ h6,
     padding: 7px 20px;*/
     -ms-border-radius: 12px;
     border-radius: 12px;
+    outline: none !important;
 }
 
 .field-validation-error {
@@ -90,6 +91,7 @@ h6,
 
 .gigs {
     list-style: none;
+
 }
 .gigs > li {
     position: relative;
@@ -128,3 +130,13 @@ h6,
 .gigs > li .details .genre {
     font-size: 15px;
 }
+
+/*botao e link de seguir
+.gigs > li .gf {
+    margin-left: 65px;
+}
+
+.gigs > li .gf a{
+    margin-left: 10px;
+}
+    */
