@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GigHub.Models.Gig>
+﻿@model GigHub.ViewModels.HomeViewModel
 @{
     ViewBag.Title = "Home Page";
 }
@@ -10,40 +10,44 @@
 
 <div class="container">
     <div class="row">       
-         <ul class="gigs">
-             @foreach (var gig in Model)
-             {
-               <div class="col-md-4 gigs">
-                        @*<li>@gig.DateTime - @gig.Artist.Name - @gig.Venue</li>*@
+        <ul class="gigs">
+            @foreach (var gig in Model.UpcomingGigs)
+            {
+                <div class="col-md-4 gigs">
+                    @*<li>@gig.DateTime - @gig.Artist.Name - @gig.Venue</li>*@
                     <li>
-                    @*Calendario*@
-                    <div class="date">
-                         <div class="month">
-                              @gig.DateTime.ToString("MMM")
-                         </div>
-                         <div class="day">
-                              @gig.DateTime.ToString("d ")
-                         </div>
-                    </div>
-                    @*Detalhe do Evento e Artista*@
-                    <div class="details">
-                         <span class="artist">
-                               @gig.Artist.Name <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
-                         </span>
-                        <span class="genre">
-                            @gig.Genre.Name <button data-gig-id="@gig.Id" class="btn btn-default btn-sm js-toggle-attendance pull-right">Going?</button>
-                        </span>
+                        @*Calendario*@
+                        <div class="date">
+                            <div class="month">
+                                @gig.DateTime.ToString("MMM")
+                            </div>
+                            <div class="day">
+                                @gig.DateTime.ToString("d ")
+                            </div>
+                        </div>
+                        @*Detalhe do Evento e Artista*@
+                        <div class="details">
+                            <span class="artist">
+                                @gig.Artist.Name
+                                @if (Model.ShowActions)
+                                {
+                                    <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
+                                }
 
-                    </div>
-                    @*Botões de Ação*@
-                    @*<div class="gf">
-                         
-                         
-                    </div>*@
+                            </span>
+                            <span class="genre">
+                                @gig.Genre.Name
+                                @if (Model.ShowActions)
+                                {
+                                    <button data-gig-id="@gig.Id" class="btn btn-default btn-sm js-toggle-attendance pull-right">Going?</button>
+                                }
+                            </span>
+                        </div>
                     </li>
-              </div>
-             }
-          </ul>
+                </div>
+            }
+        </ul>
+
      </div>
 </div>
 

@@ -1,4 +1,5 @@
 ﻿using GigHub.Models;
+using GigHub.ViewModels;
 using System;
 using System.Data.Entity;
 using System.Linq;
@@ -22,7 +23,14 @@ namespace GigHub.Controllers
                                        .Include(g => g.Artist)
                                        .Include(g => g.Genre)
                                        .Where(g => g.DateTime > DateTime.Now);
-            return View(upcomingGigs);
+
+            //HomeViewModel para checar se Usuario está Logado ou Não (caso nao esteja, não exibe botões Follow e Going)
+            var viewModel = new HomeViewModel
+            {
+                UpcomingGigs = upcomingGigs,
+                ShowActions = User.Identity.IsAuthenticated
+            };
+            return View(viewModel);
         }
 
         public ActionResult About()
