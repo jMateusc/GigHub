@@ -28,7 +28,7 @@
                     @*Detalhe do Evento e Artista*@
                     <div class="details">
                          <span class="artist">
-                               @gig.Artist.Name <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
+                               @gig.Artist.Name <button data-user-id="@gig.ArtistId" class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
                          </span>
                         <span class="genre">
                             @gig.Genre.Name <button data-gig-id="@gig.Id" class="btn btn-default btn-sm js-toggle-attendance pull-right">Going?</button>
@@ -50,17 +50,32 @@
 @section scripts
 {
     <script>
+        @*Acao/Botao Going *@
         $(document).ready(function() {
             $(".js-toggle-attendance").click(function(e) {
-                    var button = $(e.target);
-                    $.post("/api/attendances", {gigId: button.attr("data-gig-id")})
-                .done(function() {
-                    button.removeClass("btn-default").addClass("btn-info").text("Going");
-                })
-                .fail(function() {
-                    alert("Something failed!");
-                })
+                var button = $(e.target);
+                $.post("/api/attendances", { gigId: button.attr("data-gig-id") })
+                    .done(function() {
+                        button.removeClass("btn-default").addClass("btn-info").text("Going");
+                    })
+                    .fail(function() {
+                        alert("Something failed!");
+                    });
+            });
         });
+
+        @*Acao/Botao Follow *@
+        $(document).ready(function () {
+            $(".js-toggle-follow").click(function(e) {
+                var button = $(e.target);
+                $.post("/api/followings", { followeeId: button.attr("data-user-id") })
+                    .done(function() {
+                        button.text("Following");
+                    })
+                    .fail(function() {
+                        alert("Something failed!");
+                    });
+            });
         });
     </script>
 }
