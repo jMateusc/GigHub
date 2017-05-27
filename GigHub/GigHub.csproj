@@ -295,6 +295,7 @@
     <Content Include="Views\Gigs\Create.cshtml" />
     <Content Include="Views\Shared\Cabeçalho.cshtml" />
     <Content Include="Views\Gigs\Attending.cshtml" />
+    <Content Include="Views\Gigs\Following.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

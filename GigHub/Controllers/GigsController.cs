@@ -99,7 +99,16 @@ namespace GigHub.Controllers
         [Authorize]
         public ActionResult Following()
         {
-            throw new System.NotImplementedException();
+            var userId = User.Identity.GetUserId();
+            var artistasQueSigo = _context.Followings
+                                 .Where(f => f.FollowerId == userId)
+                                 .Select(f => f.Followee)
+                                 .ToList();
+
+            
+
+            return View("Following", artistasQueSigo);
+            
         }
     }
 }

@@ -24,7 +24,7 @@ textarea {
 }
 
 /*Bootstrap Overrides*/
-.cabeçalho-attending {
+.cabeçalho-attending,.cabeçalho-following {
     margin-bottom: 20px;
 }
 .navbar-inverse {
