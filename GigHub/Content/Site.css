@@ -24,6 +24,9 @@ textarea {
 }
 
 /*Bootstrap Overrides*/
+.cabeçalho-attending {
+    margin-bottom: 20px;
+}
 .navbar-inverse {
     background-color: #FF4342;
     border-color: #FF4342;

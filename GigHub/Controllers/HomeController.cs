@@ -15,6 +15,8 @@ namespace GigHub.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
+        /*Esta ação é exiba Home/Index.html*/
         public ActionResult Index()
         {
             //extrai o Artista(tabela) relacionado a Gig(tabela) que irá participar.
@@ -24,13 +26,17 @@ namespace GigHub.Controllers
                                        .Include(g => g.Genre)
                                        .Where(g => g.DateTime > DateTime.Now);
 
-            //HomeViewModel para checar se Usuario está Logado ou Não (caso nao esteja, não exibe botões Follow e Going)
-            var viewModel = new GigsViewModel
+            //GigsViewModel para checar se Usuario está Logado ou Não (caso nao esteja, não exibe botões Follow e Going)
+            /*Guarda em memoria todas informações relacionadas a shows que irão acontecer (UpcomingGigs)
+             *Além disso verifica se quem está visualizando a página está logado, caso esteja alguns botões(follow e going)
+             *são exibidos na tela. */
+            var gigsViewModel = new GigsViewModel
             {
                 UpcomingGigs = upcomingGigs,
-                ShowActions = User.Identity.IsAuthenticated
+                ShowActions = User.Identity.IsAuthenticated,
+                PaginaInicial = true
             };
-            return View(viewModel);
+            return View("GigsIndex",gigsViewModel);
         }
 
         public ActionResult About()

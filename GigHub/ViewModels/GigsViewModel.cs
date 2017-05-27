@@ -10,6 +10,10 @@ namespace GigHub.ViewModels
          * a fim de exibir botões de ação ShowActions
          */
         public IEnumerable<Gig> UpcomingGigs { get; set; }
-        public bool ShowActions { get; set; }
+        public bool ShowActions { get; set; } 
+
+
+        //Exibir Cabeçalho Corretamente se usuario estiver logado
+        public bool PaginaInicial { get; set; }
     }
 }

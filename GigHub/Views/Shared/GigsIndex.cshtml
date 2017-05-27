@@ -3,10 +3,9 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>The Gighub website</h1>
-    <p class="alert alert-success">Acompanhe os eventos da sua cidade</p>
-</div>
+@if (Model.PaginaInicial) { 
+    @Html.Partial("Cabeçalho")
+}
 
 <div class="container">
     <div class="row">       

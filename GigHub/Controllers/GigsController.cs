@@ -15,6 +15,7 @@ namespace GigHub.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
         // GET: Gigs
         [Authorize]
         public ActionResult Create()
@@ -42,7 +43,7 @@ namespace GigHub.Controllers
             //MODO LENTO
             //var artistId = User.Identity.GetUserId();                          
             //var artist = _context.Users.Single(u => u.Id == artistId);         //existe mesmo esse usuario?
-            //var genre = _context.Genres.Single(g => g.Id == viewModel.Genre);  //existe mesmo esse genero?
+            //var genre = _context.Genres.Single(g => g.Id == viewModel.Genre);  //existe mesmo esse genero? Select genre From Genre Where (id==id)
 
             //Validação
             if (!ModelState.IsValid)
@@ -67,7 +68,8 @@ namespace GigHub.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        /*Ação responsável por identificar e retornar a View informações relacionado ao usuario que irá
+         *participar de algum dos eventos que o mesmo demonstrou interesse ao clicar (going?) */
         [Authorize]
         public ActionResult Attending()
         {
@@ -79,13 +81,25 @@ namespace GigHub.Controllers
                 .Include(a => a.Genre)
                 .ToList();
 
-            var viewModel = new GigsViewModel
+            /*assim como na action Index() do Controller HomeController
+             *Acumula informações relacionado a shows que o usuario logado irá comparecer
+             *informações essas que são: Gig,Artista,Genero
+             *podendo exibir asism, datas do show, nome do artista a tocar, genero musical além de outras informações */
+            var gigsViewModel = new GigsViewModel
             {
                 UpcomingGigs = gigs,
-                ShowActions = User.Identity.IsAuthenticated
+                ShowActions = User.Identity.IsAuthenticated,
+                
             };
 
-            return View(viewModel);
+            return View("Attending",gigsViewModel);  //
+        }
+
+        /* Ação responsável por identificar quem o usuário que está logado no momento está seguindo.*/
+        [Authorize]
+        public ActionResult Following()
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

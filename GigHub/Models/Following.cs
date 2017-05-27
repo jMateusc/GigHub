@@ -12,10 +12,10 @@ namespace GigHub.Models
 
         [Key]
         [Column(Order = 1)]
-        public string FollowerId { get; set; }   //Seguidor
+        public string FollowerId { get; set; }   //Seguidor de Artista
         [Key]
         [Column(Order = 2)]
-        public string FolloweeId { get; set; }   //Pessoa que é seguida por outra
+        public string FolloweeId { get; set; }   //Seguido por Usuario X
 
 
         //Associa
