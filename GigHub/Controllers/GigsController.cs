@@ -1,6 +1,7 @@
 ﻿using GigHub.Models;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -109,6 +110,19 @@ namespace GigHub.Controllers
 
             return View("Following", artistasQueSigo);
             
+        }
+
+        /* Ação responsavel por exibir quais artistas/shows determinado usuario logado irá comparecer */
+        [Authorize]
+        public ActionResult MineUpcomingGigs()
+        {
+            var userId = User.Identity.GetUserId();
+            var gigs = _context.Gigs
+                               .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
+                               .Include(g => g.Genre)
+                               .ToList();
+
+            return View(gigs);
         }
     }
 }
