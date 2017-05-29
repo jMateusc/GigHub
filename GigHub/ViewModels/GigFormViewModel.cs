@@ -21,11 +21,16 @@ namespace GigHub.ViewModels
         public byte Genre { get; set; }
 
         public IEnumerable<Genre> Genres { get; set; }
-
-
+        
+        //Formata Data
         public DateTime GetDateTime()
         {
              return DateTime.Parse(string.Format("{0} {1}", Date, Time)); 
         }
+
+
+
+        /*Referente a Layout*/
+        public string Cabeçalho { get; set; }  //Cabeçalho Dinamico do Formulario (Add a Gig)
     }
 }

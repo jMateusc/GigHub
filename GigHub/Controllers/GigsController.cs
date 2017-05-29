@@ -18,14 +18,34 @@ namespace GigHub.Controllers
         }
 
         // GET: Gigs
+        // Formulário
         [Authorize]
-        public ActionResult Create()
+        public ActionResult GigForm()
         {
             var viewmodel = new GigFormViewModel
             {
+                Cabeçalho = "Add a Gig",
                 Genres = _context.Genres.ToList()
             };
             return View(viewmodel);
+        }
+
+        // Editar um show 
+        [Authorize]
+        public ActionResult Edit(int id)
+        {
+            var logado = User.Identity.GetUserId();
+            var lista = _context.Gigs.Single(g => g.Id == id && logado == g.ArtistId);
+            var viewmodel = new GigFormViewModel
+            {
+                Cabeçalho = "Editar",
+                Genres = _context.Genres.ToList(),
+                Venue = lista.Venue,
+                Date = lista.DateTime.ToString("d MMM yyyy"),
+                Time = lista.DateTime.ToString("HH:mm"),
+                Genre = lista.GenreId
+            };
+            return View("GigForm",viewmodel);
         }
 
         /*Oq essa ação deve executar e oq ela precisa ser passada como parâmetros?
@@ -50,7 +70,7 @@ namespace GigHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Genres = _context.Genres.ToList(); //para formulario não submeter vazio
-                return View("Create", viewModel);
+                return View("GigForm", viewModel);
             }
 
 
@@ -121,8 +141,14 @@ namespace GigHub.Controllers
                                .Where(g => g.ArtistId == userId && g.DateTime > DateTime.Now)
                                .Include(g => g.Genre)
                                .ToList();
+            /*Query em LINQ <-> SQL */
+            var retorna_atributos_de_gigs = from s in _context.Gigs
+                                            join a in _context.Genres  
+                                            on s.GenreId equals a.Id 
+                                            where s.ArtistId == userId
+                                            select s;
 
-            return View(gigs);
+            return View(retorna_atributos_de_gigs);
         }
     }
 }

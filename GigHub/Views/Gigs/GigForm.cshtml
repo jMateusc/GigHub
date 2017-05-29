@@ -1,15 +1,15 @@
 ﻿@using Newtonsoft.Json.Linq
 @model GigHub.ViewModels.GigFormViewModel
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = Model.Cabeçalho;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Add a Gig</h2>
+<h2>@Model.Cabeçalho</h2>
 @using (Html.BeginForm("Create", "Gigs"))
 {
     @Html.AntiForgeryToken()
-    <p class="alert alert-info">Todos os campos devem ser obrigatoriamente preenchidos.</p>
+    <p class="alert alert-info">Todos os campos devem ser <strong>obrigatoriamente preenchidos</strong>.</p>
     <div class="form-group">
         @Html.LabelFor(m => m.Venue)
         @Html.TextBoxFor(m => m.Venue, new { @class = "form-control" })
@@ -30,7 +30,7 @@
         @Html.DropDownListFor(m => m.Genre, new SelectList(Model.Genres, "Id", "Name"), "Selecione um estilo", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Genre)
     </div>
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-success">Save</button>
 }
 
 @section scripts
